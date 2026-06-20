@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OnTrYbe — Empowering Traders, Building Futures</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0e14;
+            color: #e6edf3;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            background: #161b22;
+            padding: 2.5rem 2rem;
+            border-radius: 28px;
+            border: 1px solid #30363d;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f0883e, #58a6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #8b949e;
+            margin-top: -0.2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #f0883e;
+            padding-left: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: #f0f6fc;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 0.4rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.75rem 0;
+            color: #f0f6fc;
+        }
+
+        p,
+        li {
+            color: #c9d1d9;
+            margin-bottom: 0.75rem;
+        }
+
+        /* ===== GRID LAYOUTS ===== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: #0d1117;
+            padding: 1.2rem 1.2rem;
+            border-radius: 16px;
+            border: 1px solid #30363d;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            border-color: #f0883e;
+            transform: translateY(-2px);
+        }
+
+        .card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .card strong {
+            color: #f0f6fc;
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #8b949e;
+            margin-bottom: 0;
+        }
+
+        /* ===== SECURITY BADGES ===== */
+        .badge {
+            display: inline-block;
+            background: #1c2333;
+            color: #58a6ff;
+            font-weight: 600;
+            padding: 0.25rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid #30363d;
+            margin: 0.2rem 0.2rem 0.2rem 0;
+        }
+
+        .badge-green {
+            background: #238636;
+            color: #fff;
+            border-color: #238636;
+        }
+
+        /* ===== LOGIN FORM ===== */
+        .login-box {
+            background: #0d1117;
+            padding: 2rem 2rem 1.8rem;
+            border-radius: 20px;
+            border: 1px solid #30363d;
+            max-width: 420px;
+            margin: 1rem auto 0;
+        }
+
+        .login-box label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #f0f6fc;
+            margin-top: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .login-box input[type="email"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            border: 1px solid #30363d;
+            background: #0b0e14;
+            color: #e6edf3;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .login-box input:focus {
+            border-color: #58a6ff;
+            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+        }
+
+        .login-box .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: #8b949e;
+        }
+
+        .login-box .checkbox-row input {
+            width: 18px;
+            height: 18px;
+            accent-color: #f0883e;
+        }
+
+        .login-box .forgot {
+            display: block;
+            text-align: right;
+            color: #58a6ff;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            text-decoration: none;
+        }
+
+        .login-box .forgot:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #238636;
+            color: #fff;
+            padding: 0.7rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+            text-align: center;
+            margin-top: 1.2rem;
+        }
+
+        .btn:hover {
+            background: #2ea043;
+            transform: scale(1.01);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #30363d;
+            color: #e6edf3;
+        }
+
+        .btn-outline:hover {
+            border-color: #f0883e;
+            color: #f0883e;
+            background: transparent;
+        }
+
+        .btn-google {
+            background: #fff;
+            color: #0b0e14;
+            margin-top: 0.5rem;
+        }
+
+        .btn-google:hover {
+            background: #f0f0f0;
+        }
+
+        .divider {
+            text-align: center;
+            color: #8b949e;
+            font-size: 0.85rem;
+            margin: 1rem 0 0.5rem;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #30363d;
+        }
+
+        .divider::before {
+            left: 0;
+        }
+        .divider::after {
+            right: 0;
+        }
+
+        /* ===== AUTH STEPS ===== */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 100px;
+            background: #0d1117;
+            padding: 1rem 0.8rem;
+            border-radius: 16px;
+            border: 1px solid #30363d;
+            text-align: center;
+        }
+
+        .step .num {
+            display: inline-block;
+            background: #f0883e;
+            color: #0b0e14;
+            font-weight: 800;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .step strong {
+            display: block;
+            color: #f0f6fc;
+            font-size: 0.95rem;
+        }
+
+        .step p {
+            font-size: 0.8rem;
+            color: #8b949e;
+            margin-bottom: 0;
+        }
+
+        /* ===== REPO LINK ===== */
+        .repo-box {
+            background: #0d1117;
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid #30363d;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .repo-box a {
+            color: #58a6ff;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .repo-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #30363d;
+            font-size: 0.85rem;
+            color: #8b949e;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #58a6ff;
+            text-decoration: none;
+            margin: 0 0.6rem;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .grid-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .grid-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .steps {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .step {
+                min-width: unset;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .tagline {
+                font-size: 1rem;
+            }
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .grid-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .login-box {
+                padding: 1.5rem 1rem;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+            .footer-links a {
+                display: block;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .badge {
+                font-size: 0.65rem;
+                padding: 0.15rem 0.6rem;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .text-center {
+            text-align: center;
+        }
+        .mt-1 {
+            margin-top: 1rem;
+        }
+        .mb-1 {
+            margin-bottom: 1rem;
+        }
+        .text-muted {
+            color: #8b949e;
+        }
+        .text-accent {
+            color: #f0883e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== HEADER ===== -->
+        <h1>⚡ OnTrYbe</h1>
+        <div class="tagline">EMPOWERING TRADERS, BUILDING FUTURES.</div>
+
+        <p style="font-size:1.1rem; font-weight:500; color:#f0f6fc;">
+            Secure access to your trading world.
+        </p>
+        <p>
+            OnTrYbe is a community-driven platform for framework updates, open-source documentation &amp; initiatives built for traders, by traders.
+        </p>
+
+        <!-- ===== SECURITY BADGES ===== -->
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin:1rem 0 0.2rem;">
+            <span class="badge badge-green">AES-256 Encryption</span>
+            <span class="badge badge-green">TLS 1.3</span>
+            <span class="badge badge-green">Multi-Factor Auth</span>
+            <span class="badge badge-green">Device Verification</span>
+            <span class="badge badge-green">Fraud Monitoring</span>
+            <span class="badge badge-green">24/7 Operational</span>
+        </div>
+
+        <!-- ===== SECURITY GRID ===== -->
+        <div class="grid-3">
+            <div class="card">
+                <div class="icon">🔒</div>
+                <strong>Bank-Grade Security</strong>
+                <p>Your data is protected with industry-standard AES-256 encryption.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🌐</div>
+                <strong>SSL/TLS Encrypted</strong>
+                <p>All connections are secured using TLS 1.3 encryption.</p>
+            </div>
+            <div class="card">
+                <div class="icon">📱</div>
+                <strong>Multi-Factor Authentication</strong>
+                <p>Add an extra layer of protection to your account.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🖥️</div>
+                <strong>Device Verification</strong>
+                <p>We verify devices to prevent unauthorized access.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🛡️</div>
+                <strong>Fraud &amp; Risk Monitoring</strong>
+                <p>Real-time monitoring to keep your account and assets safe.</p>
+            </div>
+            <div class="card">
+                <div class="icon">⚙️</div>
+                <strong>Platform Security: Operational</strong>
+                <p>All systems are active and monitored 24/7.</p>
+            </div>
+        </div>
+
+        <!-- ===== LOGIN SECTION ===== -->
+        <h2>Welcome Back</h2>
+        <p class="text-muted">Log in to continue to OnTrYbe</p>
+
+        <div class="login-box">
+            <label for="email">Email / Username</label>
+            <input type="email" id="email" placeholder="trader@example.com" value="trader@example.com" />
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="***********" value="***********" />
+
+            <div class="checkbox-row">
+                <input type="checkbox" id="remember" checked />
+                <label for="remember" style="margin:0; font-weight:400;">Remember this device</label>
+            </div>
+
+            <a href="#" class="forgot">Forgot Password?</a>
+
+            <a href="#" class="btn">Secure Login</a>
+
+            <div class="divider">or continue with</div>
+
+            <a href="#" class="btn btn-google">Continue with Google</a>
+        </div>
+
+        <!-- ===== AUTH FLOW ===== -->
+        <h2>Authentication Flow</h2>
+        <p class="text-muted">Our secure 4-step verification process</p>
+
+        <div class="steps">
+            <div class="step">
+                <span class="num">1</span>
+                <strong>User</strong>
+                <p>You enter your credentials</p>
+            </div>
+            <div class="step">
+                <span class="num">2</span>
+                <strong>Verify</strong>
+                <p>We verify your identity and device</p>
+            </div>
+            <div class="step">
+                <span class="num">3</span>
+                <strong>Authenticate</strong>
+                <p>Secure authentication via encrypted channel</p>
+            </div>
+            <div class="step">
+                <span class="num">4</span>
+                <strong>Access Granted</strong>
+                <p>You're in. Dashboard loads securely</p>
+            </div>
+        </div>
+
+        <!-- ===== PRIVACY GRID ===== -->
+        <div class="grid-4">
+            <div class="card" style="text-align:center;">
+                <strong>🔒 Privacy First</strong>
+                <p>We never share your personal data. Ever.</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <strong>🔐 Data Encrypted</strong>
+                <p>All sensitive data is encrypted at rest and in transit.</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <strong>⏱️ Session Protection</strong>
+                <p>Auto logout &amp; session monitoring enabled.</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <strong>🛡️ Anti-Phishing</strong>
+                <p>Protected against phishing and malicious attacks.</p>
+            </div>
+        </div>
+
+        <!-- ===== REPOSITORY ===== -->
+        <h2>Repository</h2>
+        <div class="repo-box">
+            <p style="margin-bottom:0.5rem;">
+                OnTrYbe is open-source friendly. Explore our code, contribute, and be part of the movement.
+            </p>
+            <a href="https://github.com/omarscourt-codec/system2-lighthouse" target="_blank">
+                github.com/ontrybe/platform
+            </a>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="footer">
+            <p style="margin-bottom:0.2rem;">&copy; 2026 OnTrYbe. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Security</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
